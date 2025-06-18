@@ -1,9 +1,9 @@
 [project]
 name = "nerd-book-store"
 version = "0.1.0"
-description = "Nerd Book Store API"
+description = "Nerd Book Store"
 authors = [
-    {name = "AndreDG88",email = "andre.soares.designer@gmail.com"}
+    {name = "Thcmb",email = "thiagocomba@hotmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
