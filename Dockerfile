@@ -28,6 +28,6 @@ WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 COPY README.md ./
 COPY . .
-RUN poetry install --without dev
+RUN poetry install
 EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
