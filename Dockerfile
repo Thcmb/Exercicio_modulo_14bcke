@@ -20,7 +20,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         curl \
         build-essential
-RUN pip install poetry
+RUN pip install --no-cache-dir poetry
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
