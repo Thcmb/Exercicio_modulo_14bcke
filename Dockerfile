@@ -16,18 +16,28 @@ ENV PYTHONUNBUFFERED=1 \
     PYSETUP_PATH="/opt/pysetup" \
     VENV_PATH="/opt/pysetup/.venv"
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
+
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         curl \
-        build-essential
+        build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN pip install --no-cache-dir poetry
+
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir psycopg2
+
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 COPY README.md ./
 COPY . .
+
 RUN poetry install
+
 EXPOSE 8000
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
